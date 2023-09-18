@@ -31,7 +31,7 @@ function LoginPage() {
         <div className="App">
             <h1>Авторизация</h1>
             <GoogleLogin
-                clientId={clientId}
+                clientId='709313181868-4p944l6in3gqid9ek6qda8advv2gsh7m.apps.googleusercontent.com'
                 buttonText="Авторизуйтесь при помощи Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
