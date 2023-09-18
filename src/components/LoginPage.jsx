@@ -6,6 +6,7 @@ import "../App.css"
 function LoginPage() {
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
     const redirectUri = 'http://localhost:3000';
+    const redirectUriDepl = 'https://google-auth-inky.vercel.app/'
     const navigate = useNavigate();
 
     console.log(clientId)
@@ -36,7 +37,7 @@ function LoginPage() {
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}
-                redirectUri={redirectUri}
+                redirectUri={redirectUriDepl}
             />
         </div>
     );
