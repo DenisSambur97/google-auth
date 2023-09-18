@@ -9,7 +9,7 @@ function LoginPage() {
     const redirectUriDepl = 'https://google-auth-inky.vercel.app/'
     const navigate = useNavigate();
 
-    console.log(clientId)
+    // console.log(clientId)
 
     const responseGoogle = (response) => {
         if (response.accessToken) {
