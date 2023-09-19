@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
+import { gapi } from 'gapi-script'
 import "../App.css"
 
 function LoginPage() {
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
     const redirectUri = 'http://localhost:3000';
-    const redirectUriDepl = 'https://google-auth-inky.vercel.app/'
+    const redirectUriDepl = 'https://google-auth-inky.vercel.app/' // для Vercel
     const navigate = useNavigate();
 
-    // console.log(clientId)
+    useEffect(() => {
+        // Инициализация gapi
+        gapi.load('auth2', function() {
+            gapi.auth2.init({
+                client_id: clientId,
+            });
+        });
+    }, [clientId]);
 
     const responseGoogle = (response) => {
         if (response.accessToken) {
@@ -20,11 +28,10 @@ function LoginPage() {
                 imageUrl: response.profileObj.imageUrl,
             };
             // Перенаправление пользователя на страницу профиля, используя navigate
-            console.log('has');
             navigate('/profile', { state: { user } });
         }
         else {
-            console.log('error')
+            alert('Что-то пошло не так..')
         }
     };
 
@@ -37,7 +44,7 @@ function LoginPage() {
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}
-                redirectUri={redirectUriDepl}
+                redirectUri={redirectUri}
             />
         </div>
     );
