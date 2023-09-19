@@ -44,7 +44,7 @@ function LoginPage() {
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}
-                redirectUri={redirectUri}
+                redirectUri={redirectUriDepl}
             />
         </div>
     );
